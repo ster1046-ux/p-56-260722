@@ -5,8 +5,11 @@ public class Calc {
     // int rs = Calc.run("((3 + 5) * 5 + -10) * 10 / 5");
 
     public static int run(String text) {
-
         text = text.trim();
+
+        if (!text.contains("+") && !text.contains("-") && !text.contains("/") && !text.contains("*")) {
+            return Integer.parseInt((text));
+        }
 
         int plusIndex = text.lastIndexOf("+");
         int minusIndex = text.lastIndexOf("-");
