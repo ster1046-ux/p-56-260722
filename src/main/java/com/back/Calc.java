@@ -26,6 +26,24 @@ public class Calc {
             return run(leftText) * run(rightText);
         }
 
+        int minusIndex = text.indexOf("-");
+
+        if (minusIndex != -1) {
+            String leftText = text.substring(0, minusIndex).trim();
+            String rightText = text.substring(minusIndex + 1).trim();
+
+            return run(leftText) * run(rightText);
+        }
+
+        int divideIndex = text.indexOf("/");
+
+        if (divideIndex != -1) {
+            String leftText = text.substring(0, divideIndex).trim();
+            String rightText = text.substring(divideIndex + 1).trim();
+
+            return run(leftText) * run(rightText);
+        }
+
         return Integer.parseInt(text);
 
     }
