@@ -8,46 +8,38 @@ public class Calc {
 
         text = text.trim();
 
-        int plusIndex = text.indexOf("+");
+        int plusIndex = text.lastIndexOf("+");
+        int minusIndex = text.lastIndexOf("-");
 
-        if (plusIndex != -1) {
-            String leftText = text.substring(0, plusIndex).trim();
-            String rightText = text.substring(plusIndex + 1).trim();
+        if (plusIndex != -1 || minusIndex != -1) {
+            if(plusIndex > minusIndex) {
+                String leftText = text.substring(0, plusIndex).trim();
+                String rightText = text.substring(plusIndex + 1).trim();
+                return run(leftText) + run(rightText);
 
-            return run(leftText) + run(rightText);
+            } else {
+                String leftText = text.substring(0, minusIndex).trim();
+                String rightText = text.substring(minusIndex + 1).trim();
+                return run(leftText) - run(rightText);
+            }
         }
 
-        int multiplyIndex = text.indexOf("*");
+        int multiplyIndex = text.lastIndexOf("*");
+        int divideIndex = text.lastIndexOf("/");
 
-        if (multiplyIndex != -1) {
-            String leftText = text.substring(0, multiplyIndex).trim();
-            String rightText = text.substring(multiplyIndex + 1).trim();
+        if (multiplyIndex != -1 || divideIndex != -1) {
+            if (multiplyIndex > divideIndex) {
+                String leftText = text.substring(0, multiplyIndex).trim();
+                String rightText = text.substring(multiplyIndex + 1).trim();
+                return run(leftText) * run(rightText);
 
-            return run(leftText) * run(rightText);
+            } else {
+                String leftText = text.substring(0, divideIndex).trim();
+                String rightText = text.substring(divideIndex + 1).trim();
+                return run(leftText) / run(rightText);
+            }
+
         }
-
-        int minusIndex = text.indexOf("-");
-
-        if (minusIndex != -1) {
-            String leftText = text.substring(0, minusIndex).trim();
-            String rightText = text.substring(minusIndex + 1).trim();
-
-            return run(leftText) * run(rightText);
-        }
-
-        int divideIndex = text.indexOf("/");
-
-        if (divideIndex != -1) {
-            String leftText = text.substring(0, divideIndex).trim();
-            String rightText = text.substring(divideIndex + 1).trim();
-
-            return run(leftText) * run(rightText);
-        }
-
         return Integer.parseInt(text);
-
     }
-
-
-
 }
