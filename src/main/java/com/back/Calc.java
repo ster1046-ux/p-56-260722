@@ -1,10 +1,10 @@
 package com.back;
 
-public class Calculator {
+public class Calc {
 
     // int rs = Calc.run("((3 + 5) * 5 + -10) * 10 / 5");
 
-    public int run(String text) {
+    public static int run(String text) {
 
         text = text.trim();
 
@@ -25,7 +25,11 @@ public class Calculator {
 
             return run(leftText) * run(rightText);
         }
+
         return Integer.parseInt(text);
 
     }
+
+
+
 }
